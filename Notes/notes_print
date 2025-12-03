@@ -1,0 +1,16 @@
+if we have to print any string and integer:-
+EX:-1
+print("Hello world")
+if we have to print any string then we have to write in singel('') &double("") qutation.
+
+ex:-2
+print("10+20")
+if we write integer in single and double quation then print funtion read as string not as integer.
+
+ex:-3
+print("hello world","welcome to Rakesh page")
+if we want to print multiple statement then we have to use comma(,). 
+
+ex:-4
+print(10>5) or print(10<5)
+if we use condination statement then it give boolian vale like true or false.0
