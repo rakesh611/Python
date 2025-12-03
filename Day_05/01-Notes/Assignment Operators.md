@@ -35,4 +35,5 @@ x = 5
 ```python
 y = 10
 y += 3  # Equivalent to y = y + 3
+print(y)  # Output: 13
 ```
