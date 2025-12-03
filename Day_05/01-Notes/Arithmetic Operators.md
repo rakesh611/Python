@@ -65,3 +65,10 @@ result2 = y ** 3
 print(result1)   # Output: 25
 print(result2)   # Output: 125
 ```
+###  Floor Division
+```python
+x = 10
+y = 3
+result = x // y
+print(result)   # Output: 3
+```
