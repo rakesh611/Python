@@ -45,7 +45,23 @@ print(result)  # Output: 70
 
 ```python
 x = 10
-y = 7
+y = 5
 result = x / y
-print(result)  # Output: 
+print(result)  # Output: 2
+```
+### Modulus
+
+```python
+x = 10
+result = x % 3
+print(result)   # Output: 1
+```
+### Exponentiation
+```python
+x = 5
+y = 5
+result1 = x ** 2
+result2 = y ** 3
+print(result1)   # Output: 25
+print(result2)   # Output: 125
 ```
