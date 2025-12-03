@@ -1,0 +1,10 @@
+To check the store data of variable we have use 'id' for that.
+
+ex:-
+
+a=10
+b=20
+print(a,b)
+it's give output=10 20
+print(id(a),id(b))
+it's give output=stroge of a & b
