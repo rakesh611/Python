@@ -37,3 +37,21 @@ y = 10
 y += 3  # Equivalent to y = y + 3
 print(y)  # Output: 13
 ```
+### Subtraction Assignment
+```python
+y=15
+y -= 5
+print(y)  # Output: 10
+```
+### Multiplicaton Assignment
+```python
+x=10
+x*=5
+print(x)  # Output: 50
+```
+### Division Assignment
+```python
+x=10
+x/=2
+print(x)   # Output: 5
+```
