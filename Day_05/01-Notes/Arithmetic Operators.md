@@ -33,3 +33,19 @@ y = 7
 result = x - y
 print(result)  # Output: 3
 ```
+### Multiplication
+
+```python
+x = 10
+y = 7
+result = x * y
+print(result)  # Output: 70
+```
+### Division
+
+```python
+x = 10
+y = 7
+result = x / y
+print(result)  # Output: 
+```
