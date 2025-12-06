@@ -22,10 +22,11 @@ import platform
 1️⃣ platform.system()
 
 Returns the name of the OS.
+```python
 import platform
 
 print(platform.system())
-
+```
 Output examples:
 
 "Windows"
