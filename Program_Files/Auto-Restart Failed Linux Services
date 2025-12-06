@@ -1,0 +1,14 @@
+import subprocess
+import os
+
+service_name = "nginx"
+
+# Check service status
+status = subprocess.run(["systemctl", "is-active", service_name],
+                        capture_output=True, text=True)
+
+if "active" not in status.stdout:
+    print(f"{service_name} is DOWN. Restarting...")
+    os.system(f"sudo systemctl restart {service_name}")
+else:
+    print(f"{service_name} is running fine!")
