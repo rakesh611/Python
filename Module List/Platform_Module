@@ -1,0 +1,114 @@
+🔥 Python platform Module — Full Explanation + Examples
+
+The platform module allows you to fetch system-level information.
+It’s super useful for DevOps engineers, sysadmins, automation scripts, and cross-platform software!
+
+🎯 Key Features of platform module
+
+You can easily get:
+
+✅ OS name (Windows, Linux, Darwin/macOS)
+✅ OS version & release
+✅ Machine architecture (x86_64, ARM, etc.)
+✅ Python version
+✅ Node/Hostname
+✅ Processor info
+…and more!
+
+📌 How to use it?
+import platform
+
+🚀 Common Functions with Examples
+1️⃣ platform.system()
+
+Returns the name of the OS.
+import platform
+
+print(platform.system())
+
+Output examples:
+
+"Windows"
+
+"Linux"
+
+"Darwin" (for macOS)
+
+2️⃣ platform.release()
+
+Returns OS release version:
+print(platform.release())
+Possible output:
+
+10 (Windows 10)
+
+6.8.0 (Linux kernel
+
+3️⃣ platform.version()
+
+More detailed OS version string.
+print(platform.version())
+
+4️⃣ platform.machine()
+
+Gives architecture:
+print(platform.machine())
+Possible output:
+
+x86_64
+
+AMD64
+
+arm64
+
+5️⃣ platform.node()
+
+Hostname of the system.
+print(platform.node())
+
+6️⃣ platform.processor()
+
+Processor info:
+print(platform.processor())
+
+7️⃣ platform.python_version()
+
+Python version:
+print(platform.python_version())
+
+8️⃣ platform.platform()
+
+Full OS summary.
+print(platform.platform())
+Example output:
+Windows-10-10.0.19045-SP0
+Linux-6.8.0-x86_64-with-glibc2.35
+
+🔥 Example: System Info Script
+import platform
+
+def system_info():
+    print("=== SYSTEM INFORMATION ===")
+
+    print("OS Name:", platform.system())
+    print("OS Release:", platform.release())
+    print("OS Version:", platform.version())
+    print("Machine:", platform.machine())
+    print("Processor:", platform.processor())
+    print("Hostname:", platform.node())
+    print("Python Version:", platform.python_version())
+    print("Full Platform Info:", platform.platform())
+
+system_info()
+
+💥 Sample Output
+=== SYSTEM INFORMATION ===
+OS Name: Linux
+OS Release: 6.8.0-50-generic
+OS Version: #51~22.04.1-Ubuntu
+Machine: x86_64
+Processor: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+Hostname: ubuntu-server
+Python Version: 3.10.12
+Full Platform Info: Linux-6.8.0-50-generic-x86_64-with-glibc2.35
+
