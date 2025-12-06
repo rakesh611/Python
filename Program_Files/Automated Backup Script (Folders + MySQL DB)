@@ -1,0 +1,19 @@
+import os
+import subprocess
+from datetime import datetime
+
+backup_dir = "/backup"
+data_dir = "/var/www/html"
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+backup_path = os.path.join(backup_dir, timestamp)
+os.makedirs(backup_path)
+
+# 1. Backup files
+os.system(f"cp -r {data_dir} {backup_path}")
+
+# 2. Backup MySQL database
+db_name = "mydb"
+os.system(f"mysqldump -u root -p123 {db_name} > {backup_path}/db_backup.sql")
+
+print(f"Backup completed at: {backup_path}")
