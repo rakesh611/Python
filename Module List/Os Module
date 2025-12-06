@@ -1,0 +1,169 @@
+🔥 What is the os Module in Python?
+The os module lets Python interact with the Operating System — Windows, Linux, macOS.
+With os, you can:
+✅ Work with files & folders
+✅ Run system commands
+✅ Read environment variables
+✅ Change directories
+✅ Get system information
+… and so much more!
+This module is heavily used in automation, DevOps scripts, CI/CD, and system administration.
+
+🚀 Most Important os Module Features (Explained)
+1️⃣ os.getcwd() – Get Current Working Directory
+import os
+print(os.getcwd())
+
+
+💡 Useful for understanding where your script is running.
+2️⃣ os.chdir() – Change Directory
+os.chdir("/var/log")
+print(os.getcwd())
+
+
+Switch your working folder—great for log reading, file automation.
+3️⃣ os.listdir() – List Files in a Directory
+print(os.listdir("/etc"))
+
+Perfect for monitoring directories or automation scripts.
+4️⃣ os.mkdir() / os.makedirs() – Create Folders
+os.mkdir("testfolder")
+os.makedirs("a/b/c")  # creates nested folders
+
+5️⃣ os.remove() – Delete Files
+os.remove("old.log")
+
+6️⃣ os.rmdir() / os.removedirs() – Remove Directories
+os.rmdir("testfolder")
+
+7️⃣ os.rename() – Rename File or Folder
+os.rename("oldname.txt", "newname.txt")
+
+8️⃣ os.environ – Environment Variables
+print(os.environ["HOME"])
+
+Used heavily in DevOps, especially loading secrets like DB passwords.
+9️⃣ os.system() – Execute Shell Commands
+os.system("ls -l")
+
+⚠️ For more advanced usage, prefer subprocess module.
+💥 FULL WORKING EXAMPLE
+This example shows various OS operations together:
+
+import os
+# 1. Show current working directory
+print("Current Directory:", os.getcwd())
+# 2. Create a new folder
+os.mkdir("demo_folder")
+print("Folder created!")
+# 3. Change into that folder
+os.chdir("demo_folder")
+print("Directory changed to:", os.getcwd())
+# 4. Create a file inside it
+with open("test.txt", "w") as f:
+    f.write("Hello from Python os module!")
+print("File created successfully.")
+# 5. List directory contents
+print("Files inside folder:", os.listdir())
+# 6. Rename the file
+os.rename("test.txt", "renamed.txt")
+print("File renamed!")
+# 7. Delete the file
+os.remove("renamed.txt")
+print("File removed!")
+# 8. Go back and delete folder
+os.chdir("..")
+os.rmdir("demo_folder")
+print("Folder removed!")
+
+🔧 Why DevOps & SysAdmins LOVE the os module?
+Because it helps automate:
+🔥 Log rotation
+🔥 Directory maintenance
+🔥 Checking disk space
+🔥 Managing environment variables
+🔥 File-based operations in CI/CD pipelines
+🔥 Running shell commands automatically🌟 1. os.path Module — SUPER IMPORTANT!
+
+os.path handles everything related to file paths.
+🔹 1️⃣ os.path.join() – Safely join paths
+import os
+path = os.path.join("/var", "log", "nginx")
+print(path)
+
+✔ Works on Windows, Linux, macOS
+✔ Avoids mistakes like missing slashes
+🔹 2️⃣ os.path.exists() – Check if path exists
+os.path.exists("/etc/passwd")
+
+🔹 3️⃣ os.path.isfile() / os.path.isdir()
+os.path.isfile("file.txt")
+os.path.isdir("/var/log")
+
+🔹 4️⃣ os.path.abspath() – Get full absolute path
+os.path.abspath("test.txt")
+
+🔹 5️⃣ os.path.basename() / dirname()
+os.path.basename("/etc/nginx/nginx.conf")  # nginx.conf
+os.path.dirname("/etc/nginx/nginx.conf")   # /etc/nginx
+
+🌟 2. Difference Between os.system() and subprocess.run()
+This is SUPER IMPORTANT for DevOps engineers.
+🟩 os.system()
+Simple — sends command to the shell.
+os.system("ls -l")
+
+✔ Pros
+Easy to use
+Works for quick scripts
+❌ Cons
+Can't capture output properly
+Less secure
+Hard to handle errors
+
+🟦 subprocess.run() (Recommended)
+More advanced and safer.
+import subprocess
+result = subprocess.run(["ls", "-l"], capture_output=True, text=True)
+print(result.stdout)
+
+✔ Pros
+Capture output
+Handle errors
+More secure
+Recommended for DevOps automation
+
+🔥 Always prefer subprocess over os.system().
+🌟 3. REAL DEVOPS AUTOMATION SCRIPT
+💥 Script: Check Disk Usage → If > 80%, Clean Logs Automatically
+import os
+import shutil
+# Disk usage check
+total, used, free = shutil.disk_usage("/")
+used_percent = (used / total) * 100
+print(f"Disk Used: {used_percent:.2f}%")
+
+# If usage above 80%, delete old log files in /var/log
+if used_percent > 80:
+    log_dir = "/var/log"
+    print("High disk usage! Cleaning old logs...")
+
+    for file in os.listdir(log_dir):
+        if file.endswith(".log"):
+            file_path = os.path.join(log_dir, file)
+            try:
+                os.remove(file_path)
+                print(f"Deleted: {file_path}")
+            except Exception as e:
+                print(f"Could not delete {file_path}: {e}")
+else:
+    print("Disk usage is normal. No log cleanup required.")
+
+🔥 This script demonstrates:
+✔ Checking system disk usage
+✔ Evaluating thresholds
+✔ Automated log cleanup
+✔ Path handling
+✔ Safe error handling
+
+This is the kind of script DevOps teams actually use.
