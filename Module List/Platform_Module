@@ -19,10 +19,11 @@ You can easily get:
 import platform
 
 🚀 Common Functions with Examples
-1️⃣ platform.system()
+### platform.system()
 
 Returns the name of the OS.
 ```python
+
 import platform
 
 print(platform.system())
