@@ -1,0 +1,86 @@
+🔥 shutil Module in Python — Full Explanation with Examples
+The shutil (shell utilities) module is used for:
+File copy
+Directory copy
+Removing files/folders
+Moving/renaming files
+Archiving (zip, tar)
+Checking disk usage
+High-level file operations
+It’s basically a Swiss-army knife for file management in Python!
+
+⭐ 1. Importing the module
+import shutil
+
+⭐ 2. Copy a File
+📌 shutil.copy()
+Copies file with content but not file permissions.
+import shutil
+shutil.copy("source.txt", "backup.txt")
+print("File copied!")
+
+⭐ 3. Copy a File With Permissions
+📌 shutil.copy2()
+Copies file with metadata (permissions, timestamps).
+shutil.copy2("source.txt", "backup_with_permissions.txt")
+
+⭐ 4. Copy Entire Folder (directory)
+📌 shutil.copytree()
+shutil.copytree("myfolder", "myfolder_backup")
+
+This will duplicate the whole directory.
+
+⭐ 5. Move or Rename Files/Folders
+📌 shutil.move()
+shutil.move("old_folder", "new_folder")
+
+Same function works for renaming:
+shutil.move("file1.txt", "file2.txt")
+
+⭐ 6. Delete Folder
+📌 shutil.rmtree()
+(Removes directory recursively — Be careful!)
+shutil.rmtree("temp_folder")
+
+⭐ 7. Create ZIP/TAR Archive
+📌 shutil.make_archive()
+shutil.make_archive("project_backup", "zip", "project_folder")
+
+This creates:
+project_backup.zip
+
+⭐ 8. Extract ZIP/TAR Archives
+📌 shutil.unpack_archive()
+shutil.unpack_archive("project_backup.zip", "restore_here")
+
+⭐ 9. Check Disk Usage
+📌 shutil.disk_usage()
+usage = shutil.disk_usage("/")
+print("Total:", usage.total)
+print("Used:", usage.used)
+print("Free:", usage.free)
+
+Amazing for system-admin tasks!
+
+⭐ 10. Which Program Path?
+📌 shutil.which()
+Finds full path of a command (like which in Linux):
+print(shutil.which("python3"))
+print(shutil.which("kubectl"))
+
+Very useful in DevOps automation!
+
+🎯 Complete Practical Example
+Let’s combine everything:
+import shutil
+# Copy file
+shutil.copy("config.yaml", "config_backup.yaml")
+# Copy directory
+shutil.copytree("/etc/nginx", "/tmp/nginx_backup")
+# Move log file
+shutil.move("/var/log/app.log", "/backup/app.log")
+# Archive directory
+shutil.make_archive("nginx_archive", "zip", "/etc/nginx")
+# Check disk usage
+usage = shutil.disk_usage("/")
+print(f"Free space: {usage.free / (1024**3):.2f} GB")
