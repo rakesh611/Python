@@ -9,6 +9,7 @@ Second last → index -2
 Example:-
 ```python
 text = "PYTHON"
+
 print(text[0])   # P
 print(text[3])   # H
 print(text[-1])  # N (last letter)
