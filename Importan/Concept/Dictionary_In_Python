@@ -1,0 +1,55 @@
+## 1. What is a Dictionary in Python?
+A **dictionary** is a built-in data type in Python used to store data in **key : value** pairs.
+
+### Key Features
+- Unordered (in older versions), insertion-ordered (Python 3.7+)
+- Mutable (can be changed)
+- Keys must be unique
+- Fast lookup using keys
+
+---
+
+## 2. Creating a Dictionary
+server = {
+    "name": "web-server",
+    "ip": "192.168.1.10",
+    "port": 80
+}
+
+print(server)
+
+# Accessing Dictionary Values
+print(server["name"])
+print(server["ip"])
+
+# Using get() (Safe way)
+print(server.get("port"))
+print(server.get("os", "Not Found"))
+
+# Modifying Dictionary Values
+server["port"] = 8080
+server["os"] = "Linux"
+
+print(server)
+
+# Adding New Key-Value Pairs
+server["environment"] = "production"
+
+# Removing Items from Dictionary
+server.pop("port")
+del server["ip"]
+# Looping Through a Dictionary
+# Loop Through Keys
+for key in server:
+    print(key)
+
+# Loop Through Values
+for value in server.values():
+    print(value)
+
+# Loop Through Key-Value Pairs
+for key, value in server.items():
+    print(key, ":", value)
+
+# Dictionary Length
+print(len(server))
