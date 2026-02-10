@@ -1,0 +1,89 @@
+🔹 What is a List in Python?
+A list is a collection used to store multiple items in a single variable.
+👉 Lists are:
+Ordered (items have index positions)
+Changeable (mutable)
+Allow duplicate values
+
+🔹 How to Create a List
+servers = ["web", "db", "cache"]
+print(servers)
+
+🔹 Access List Items (Indexing)
+Index starts from 0
+servers = ["web", "db", "cache"]
+
+print(servers[0])   # web
+print(servers[1])   # db
+print(servers[-1])  # cache (last item)
+
+🔹 Change List Items
+servers = ["web", "db", "cache"]
+servers[1] = "database"
+print(servers)
+
+🔹 Add Items to a List
+1️⃣ append() – add at end
+servers = ["web", "db"]
+servers.append("cache")
+print(servers)
+
+2️⃣ insert() – add at specific position
+servers.insert(1, "loadbalancer")
+print(servers)
+
+🔹 Remove Items from a List
+1️⃣ remove() – remove by value
+servers.remove("db")
+
+2️⃣ pop() – remove by index
+servers.pop(0)   # removes "web"
+3️⃣ del
+del servers[1]
+
+🔹 List Length
+servers = ["web", "db", "cache"]
+print(len(servers))
+
+🔹 Loop Through a List
+for loop
+servers = ["web", "db", "cache"]
+for server in servers:
+    print(server)
+with index
+for i in range(len(servers)):
+    print(i, servers[i])
+
+🔹 Check Item Exists in List
+if "db" in servers:
+    print("Database server exists")
+
+🔹 List Slicing
+servers = ["web", "db", "cache", "lb"]
+print(servers[0:2])   # ['web', 'db']
+print(servers[:3])    # first 3 items
+print(servers[1:])    # from index 1 to end
+
+🔹 Common List Methods (Important)
+nums = [5, 2, 9, 1]
+nums.sort()        # sort list
+nums.reverse()     # reverse list
+nums.clear()       # remove all items
+
+🔹 List with Mixed Data Types
+info = ["web", 80, True, 10.5]
+print(info)
+
+🔹 Nested List (List inside List)
+servers = [
+    ["web", "192.168.1.10"],
+    ["db", "192.168.1.20"]
+]
+
+print(servers[0][0])   # web
+print(servers[1][1])   # 192.168.1.20
+
+🔹 Practical DevOps Example 🛠️
+servers = ["web", "db", "cache"]
+for server in servers:
+    print(f"Checking status of {server} server...")
