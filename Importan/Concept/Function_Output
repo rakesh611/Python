@@ -1,0 +1,95 @@
+✅ 1️⃣ What is Function Output?
+A function returns a value back to the caller using:
+return value
+👉 Without return, function output is None.
+
+✅ 2️⃣ Basic Example – Function with Output
+def add(a, b):
+    return a + b
+
+result = add(10, 20)
+print(result)
+🔥 Output:
+30
+💡 Explanation:
+add() returns a + b
+result stores the returned value
+
+✅ 3️⃣ Return vs Print (Very Important)
+def add(a, b):
+    print(a + b)
+This only prints. It does NOT return.
+def add(a, b):
+    return a + b
+This returns the value, which can be reused.
+
+✅ 4️⃣ Function Returning Multiple Values
+def calculate(a, b):
+    return a + b, a * b
+
+sum_value, multiply_value = calculate(5, 3)
+
+print("Sum:", sum_value)
+print("Multiply:", multiply_value)
+🔥 Output:
+Sum: 8
+Multiply: 15
+
+✅ 5️⃣ DevOps Example – Disk Usage Calculator
+def disk_usage(total, used):
+    percent = (used / total) * 100
+    return round(percent, 2)
+
+usage = disk_usage(1000, 750)
+print("Disk Usage:", usage, "%")
+
+✅ 6️⃣ Function Returning Boolean Output
+def is_server_running(status):
+    if status == "running":
+        return True
+    else:
+        return False
+
+print(is_server_running("running"))
+🔥 Output:
+True
+
+✅ 7️⃣ Function Calling Another Function and Returning Output
+def multiply(a, b):
+    return a * b
+
+def square(num):
+    return multiply(num, num)
+
+print(square(5))
+👉 Output:
+25
+
+✅ 8️⃣ Function Returning List
+def get_servers():
+    return ["web1", "web2", "db1"]
+
+servers = get_servers()
+print(servers)
+
+✅ 9️⃣ Function Returning Dictionary
+def get_server_info():
+    return {
+        "hostname": "web1",
+        "ip": "192.168.1.10",
+        "status": "running"
+    }
+
+server = get_server_info()
+print(server["ip"])
+
+✅ 10️⃣ What Happens If No Return?
+def test():
+    print("Hello")
+
+result = test()
+print(result)
+Output:
+Hello
+None
+Because no return statement.
