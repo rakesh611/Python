@@ -1,0 +1,80 @@
+✅ 1️⃣ What is a Function with Input?
+A function can take input values (parameters) from the user or from another part of the program.
+👉 Syntax:
+def function_name(parameter):
+    # code
+
+✅ 2️⃣ Basic Example – Function with One Input
+def greet(name):
+    print("Hello", name)
+greet("Rakesh")
+🔥 Output:
+Hello Rakesh
+💡 Explanation:
+name → parameter
+"Rakesh" → argument
+
+✅ 3️⃣ Function with User Input
+def greet(name):
+    print("Hello", name)
+
+user_name = input("Enter your name: ")
+greet(user_name)
+👉 If user types Rakesh
+Output:
+Hello Rakesh
+
+✅ 4️⃣ Function with Multiple Inputs
+def add(a, b):
+    return a + b
+
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+
+result = add(num1, num2)
+print("Sum is:", result)
+
+✅ 5️⃣ DevOps Example – Check CPU Usage
+def check_cpu(cpu_usage):
+    if cpu_usage > 80:
+        return "High CPU Usage"
+    else:
+        return "CPU Normal"
+
+usage = int(input("Enter CPU usage %: "))
+print(check_cpu(usage))
+
+✅ 6️⃣ DevOps Example – Server Status Checker
+def check_server_status(server_name):
+    print(f"Checking status of {server_name}...")
+    print("Server is running")
+
+server = input("Enter server name: ")
+check_server_status(server)
+
+✅ 7️⃣ Function with Default Input Value
+def deploy(environment="staging"):
+    print(f"Deploying to {environment}")
+
+deploy()              # default value
+deploy("production")  # custom value
+
+✅ 8️⃣ Function Taking Input and Returning Value
+def calculate_disk_usage(total, used):
+    percent = (used / total) * 100
+    return round(percent, 2)
+
+total_space = 1000
+used_space = 750
+
+print("Disk Usage:", calculate_disk_usage(total_space, used_space), "%")
+
+✅ 9️⃣ Function Calling Another Function with Input
+def multiply(a, b):
+    return a * b
+
+def square(num):
+    return multiply(num, num)
+
+number = int(input("Enter number: "))
+print("Square:", square(number))
