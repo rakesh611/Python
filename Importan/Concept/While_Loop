@@ -1,0 +1,77 @@
+✅ 1️⃣ What is a While Loop?
+A while loop runs as long as a condition is True.
+🔹 Syntax
+while condition:
+    # code block
+👉 It keeps running until the condition becomes False.
+
+✅ 2️⃣ Basic Example
+count = 1
+while count <= 5:
+    print("Count:", count)
+    count += 1
+🔥 Output:
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+⚠️ Important: Infinite Loop
+If you don’t update the condition, it will run forever.
+while True:
+    print("Running...")
+👉 This is called an infinite loop.
+Used in:
+Monitoring scripts
+Log watchers
+Background services
+Stop it using Ctrl + C.
+
+✅ 3️⃣ While Loop with User Input
+password = ""
+while password != "admin123":
+    password = input("Enter password: ")
+print("Access Granted")
+👉 Keeps asking until correct password entered.
+
+
+✅ 4️⃣ While Loop with Break
+break stops the loop immediately.
+count = 1
+while True:
+    print(count)
+    if count == 5:
+        break
+    count += 1
+
+✅ 5️⃣ While Loop with Continue
+continue skips current iteration.
+count = 0
+while count < 5:
+    count += 1
+    if count == 3:
+        continue
+    print(count)
+👉 Output:
+1
+2
+4
+5
+
+✅ 6️⃣ DevOps Practical Example – Server Monitoring
+import time
+cpu_usage = 50
+while cpu_usage < 80:
+    print("CPU Normal:", cpu_usage)
+    cpu_usage += 10
+    time.sleep(1)
+print("CPU Critical!")
+
+✅ 7️⃣ Real DevOps Example – Wait for Service
+import time
+service_status = "starting"
+while service_status != "running":
+    print("Waiting for service...")
+    time.sleep(2)
+    service_status = "running"
+print("Service is running!")
