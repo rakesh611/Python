@@ -1,0 +1,87 @@
+✅ What is a Nested Dictionary in Python?
+A nested dictionary is a dictionary inside another dictionary.
+👉 Structure:
+{
+   "key1": {
+        "subkey1": value,
+        "subkey2": value
+   }
+}
+
+✅ Simple Example
+student = {
+    "name": "Rakesh",
+    "marks": {
+        "math": 90,
+        "science": 85
+    }
+}
+print(student["marks"]["math"])   # 90
+
+Explanation:
+student → main dictionary
+marks → nested dictionary
+math → key inside nested dictionary
+
+✅ Real DevOps Example (Server Inventory)
+inventory = {
+    "web1": {
+        "ip": "192.168.1.10",
+        "os": "Linux",
+        "status": "running"
+    },
+    "db1": {
+        "ip": "192.168.1.20",
+        "os": "Linux",
+        "status": "stopped"
+    }
+}
+print(inventory["web1"]["ip"])
+
+✅ Loop Through Nested Dictionary
+for server, details in inventory.items():
+    print(f"\nServer: {server}")
+    for key, value in details.items():
+        print(f"{key} : {value}")
+Output:
+Server: web1
+ip : 192.168.1.10
+os : Linux
+status : running
+
+✅ Multi-Level Nested Dictionary
+infrastructure = {
+    "production": {
+        "web": {
+            "web1": {"ip": "10.0.0.1"},
+            "web2": {"ip": "10.0.0.2"}
+        },
+        "db": {
+            "db1": {"ip": "10.0.0.10"}
+        }
+    },
+    "staging": {
+        "web": {
+            "stag-web1": {"ip": "192.168.0.5"}
+        }
+    }
+}
+
+✅ Access Deep Values
+print(infrastructure["production"]["web"]["web1"]["ip"])
+Output:
+10.0.0.1
+
+✅ Loop Through Multi-Level Dictionary
+for env, roles in infrastructure.items():
+    print(f"\nEnvironment: {env}")
+    for role, servers in roles.items():
+        print(f"  Role: {role}")
+        for server, config in servers.items():
+            print(f"    {server} -> {config['ip']}")
+
+✅ Modify Nested Dictionary
+Update value
+inventory["web1"]["status"] = "restarting"
+Add new key
+inventory["web1"]["cpu"] = "70%"
