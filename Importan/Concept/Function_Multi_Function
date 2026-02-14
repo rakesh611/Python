@@ -1,0 +1,73 @@
+✅ 1️⃣ What is a Function in Python?
+A function is a reusable block of code.
+🔹 Basic Syntax
+def function_name(parameters):
+    # code
+    return value
+
+✅ 2️⃣ Simple Function Example
+def greet():
+    print("Hello DevOps Engineer")
+greet()
+👉 Output:
+Hello DevOps Engineer
+
+✅ 3️⃣ Function with Parameters
+def greet(name):
+    print(f"Hello {name}")
+greet("Rakesh")
+
+✅ 4️⃣ Function with Return Value
+def add(a, b):
+    return a + b
+
+result = add(10, 20)
+print(result)
+👉 Output:
+30
+
+✅ 5️⃣ DevOps Example – Check Disk Usage Function
+import shutil
+def check_disk_usage(path="/"):
+    total, used, free = shutil.disk_usage(path)
+    used_percent = (used / total) * 100
+    return round(used_percent, 2)
+print("Disk Usage:", check_disk_usage(), "%")
+
+✅ 6️⃣ Multi-Function Example (Modular Script)
+Instead of writing everything in one block, we divide logic into multiple functions.
+
+import shutil
+import platform
+def get_os_info():
+    return platform.system()
+def check_disk_usage(path="/"):
+    total, used, free = shutil.disk_usage(path)
+    return round((used / total) * 100, 2)
+def check_status():
+    os_name = get_os_info()
+    disk = check_disk_usage()
+    print(f"Operating System: {os_name}")
+    print(f"Disk Usage: {disk}%")
+
+check_status()
+
+✅ 7️⃣ Function Calling Another Function
+def multiply(a, b):
+    return a * b
+def calculate_square(num):
+    return multiply(num, num)
+print(calculate_square(5))
+👉 Output:
+25
+
+✅ 9️⃣ Advanced Example – Multiple Functions with Conditions
+def check_cpu(cpu_usage):
+    if cpu_usage > 80:
+        return "High CPU Usage"
+    else:
+        return "CPU Normal"
+def monitor_server(server_name, cpu_usage):
+    status = check_cpu(cpu_usage)
+    print(f"{server_name}: {status}")
+monitor_server("web1", 85)
