@@ -1,0 +1,116 @@
+✅ 1️⃣ What is Scope?
+Scope means:
+👉 Where a variable can be accessed in a program.
+There are mainly:
+Local Scope
+Global Scope
+(Advanced: Enclosing & Built-in — LEGB rule)
+
+✅ 2️⃣ Local Scope
+A variable created inside a function is called a local variable.
+It can only be used inside that function.
+🔹 Example of Local Scope
+def greet():
+    message = "Hello DevOps"
+    print(message)
+
+greet()
+🔥 Output:
+Hello DevOps
+But:
+print(message)  # ❌ Error  
+👉 Error because message is local to greet().
+
+✅ 3️⃣ Global Scope
+A variable created outside all functions is called a global variable.
+It can be accessed anywhere in the program.
+🔹 Example of Global Scope
+server_name = "web1"
+
+def show_server():
+    print(server_name)
+
+show_server()
+🔥 Output:
+web1
+Here:
+server_name is global
+Function can access it
+
+⚠️ Important: Modifying Global Variable
+If you try to change a global variable inside a function:
+count = 10
+def update():
+    count = count + 1   # ❌ Error
+It will give error.
+To modify global variable, use global keyword.
+
+🔹 Using global Keyword
+count = 10
+
+def update():
+    global count
+    count = count + 1
+
+update()
+print(count)
+🔥 Output:
+11
+
+✅ 4️⃣ Local vs Global Example (Important)
+value = 100  # Global
+
+def test():
+    value = 50   # Local
+    print("Inside function:", value)
+
+test()
+print("Outside function:", value)
+🔥 Output:
+Inside function: 50
+Outside function: 100
+
+✅ 5️⃣ DevOps Example – CPU Monitor
+threshold = 80   # Global variable
+
+def check_cpu(cpu_usage):
+    if cpu_usage > threshold:
+        return "High CPU"
+    return "Normal"
+
+print(check_cpu(75))
+
+Here:
+threshold is global
+Used inside function
+
+✅ 7️⃣ Better Professional Way
+Instead of global:
+def start_server(status):
+    return "running"
+
+server_status = "stopped"
+server_status = start_server(server_status)
+print(server_status)
+
+✅ 8️⃣ LEGB Rule (Interview Important)
+Python checks variables in this order:
+L → Local
+E → Enclosing (nested functions)
+G → Global
+B → Built-in
+🔹 Example of LEGB
+x = "global"
+
+def outer():
+    x = "enclosing"
+
+    def inner():
+        x = "local"
+        print(x)
+
+    inner()
+
+outer()
+Output:
+local
