@@ -5,3 +5,4 @@ def check_disk():
     print("Checking disk usage")
 
 check_disk()
+# output: Checking disk usage

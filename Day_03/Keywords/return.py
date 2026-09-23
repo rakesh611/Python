@@ -9,3 +9,4 @@ def check_service(status):
 result = check_service("active")
 
 print(result)
+# Output: True
