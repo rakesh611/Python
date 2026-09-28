@@ -468,3 +468,35 @@ print(new_file)
 
 # Output: /etc/nginx/nginx.conf.backup
 ###########################################################################################################################################
+# with_suffix()
+# Changes the file extension.
+from pathlib import Path
+
+file = Path("/tmp/application.txt")
+
+new_file = file.with_suffix(".backup")
+
+print(new_file)
+# Output: /tmp/application.backup
+# Example:2
+from pathlib import Path
+
+config = Path("/etc/nginx/nginx.conf")
+
+backup = config.with_suffix(".conf.backup")
+
+print(backup)
+###########################################################################################
+# iterdir()
+# Lists files and directories inside a directory.
+from pathlib import Path
+
+directory = Path("/var/log")
+
+for item in directory.iterdir():
+    print(item)
+# Possible Output:
+# /var/log/messages
+# /var/log/secure
+# /var/log/httpd
+# /var/log/audit
