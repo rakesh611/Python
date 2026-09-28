@@ -193,3 +193,278 @@ backup_dir.mkdir(
 )
 
 print("Backup directory ready")
+
+#####################################################################################################################
+# rmdir()
+# Removes an empty directory.
+
+from pathlib import Path
+
+directory = Path("/tmp/test")
+
+directory.rmdir()
+# Important: rmdir() cannot remove a directory containing files.
+# This will fail: directory.rmdir()
+# For recursive deletion, Python also provides shutil.rmtree().
+#################################################################################################################
+# touch()
+# Creates an empty file.
+from pathlib import Path
+
+file = Path("/tmp/test.txt")
+
+file.touch()
+# Example:2
+from pathlib import Path
+
+health_file = Path("/tmp/application_healthy")
+
+health_file.touch()
+
+print("Health marker created")
+###################################################################################################################
+# unlink()
+# Deletes a file.
+from pathlib import Path
+
+file = Path("/tmp/test.txt")
+
+file.unlink()
+# Safe version
+from pathlib import Path
+
+file = Path("/tmp/test.txt")
+
+if file.exists():
+    file.unlink()
+    print("File deleted")
+else:
+    print("File does not exist")
+
+# Remove an old deployment marker:
+from pathlib import Path
+
+marker = Path("/opt/app/deployment_failed")
+
+if marker.exists():
+    marker.unlink()
+    print("Old deployment marker removed")
+
+########################################################################################################################
+# write_text()
+# Writes text into a file.
+from pathlib import Path
+
+file = Path("/tmp/app.txt")
+
+file.write_text("Application started\n")
+# Read it: 
+print(file.read_text())
+# Output: Application started
+
+#######################################################################################################################
+# read_text()
+# Reads text from a file.
+from pathlib import Path
+
+config = Path("/etc/hostname")
+
+hostname = config.read_text()
+
+print(hostname)
+# Read an application configuration:
+from pathlib import Path
+
+config = Path("/opt/myapp/config/app.conf")
+
+if config.exists():
+    content = config.read_text()
+
+    print(content)
+
+#######################################################################################################################
+# write_bytes()
+# Writes binary data.
+from pathlib import Path
+
+file = Path("/tmp/data.bin")
+
+file.write_bytes(b"Hello")
+# Useful for:
+# Binary files
+# Certificates
+# Images
+# Compressed data
+
+# For normal configuration/log files, use:
+write_text()
+
+#######################################################################################################################
+# read_bytes()
+# Reads binary data.
+from pathlib import Path
+
+file = Path("/tmp/data.bin")
+
+data = file.read_bytes()
+
+print(data)
+# Output: b'Hello'
+###################################################################################################################
+# open()
+# Path.open() works similarly to Python's built-in open().
+from pathlib import Path
+
+log_file = Path("/var/log/application.log")
+
+with log_file.open("r") as file:
+    data = file.read()
+
+print(data)
+# Read line by line
+from pathlib import Path
+
+log_file = Path("/var/log/application.log")
+
+with log_file.open("r") as file:
+    for line in file:
+        print(line.strip())
+# This is useful for large log files because you don't need to load the entire file into memory.
+# name
+# Returns the filename.
+from pathlib import Path
+
+path = Path("/var/log/application.log")
+
+print(path.name)
+# Output: application.log
+# Example: 
+from pathlib import Path
+
+config = Path("/etc/nginx/nginx.conf")
+
+print("File:", config.name)
+# Output: File: nginx.conf
+
+#############################################################################################################################
+# stem
+# Returns the filename without extension.
+from pathlib import Path
+
+file = Path("/var/log/application.log")
+
+print(file.stem)
+# Output: application
+# Useful when generating backup names.
+from pathlib import Path
+
+log = Path("/var/log/application.log")
+
+backup = log.parent / f"{log.stem}.backup{log.suffix}"
+
+print(backup)
+# Output: /var/log/application.backup.log
+######################################################################################################################
+# suffix
+# Returns the file extension.
+from pathlib import Path
+
+file = Path("/etc/nginx/nginx.conf")
+
+print(file.suffix)
+# Output: .conf
+# Another example:
+file = Path("/tmp/application.log")
+
+print(file.suffix)
+# Output: .log
+##############################################################################################################################
+# suffixes
+# Returns multiple extensions.
+from pathlib import Path
+
+file = Path("/backup/app.tar.gz")
+
+print(file.suffixes)
+# Output: ['.tar', '.gz']
+# Useful for compressed backup files.
+
+#############################################################################################################################
+# parent
+# Returns the parent directory.
+from pathlib import Path
+
+file = Path("/var/log/application/app.log")
+
+print(file.parent)
+# Output: /var/log/application
+# Example: 
+from pathlib import Path
+
+config = Path("/etc/nginx/nginx.conf")
+
+print("Configuration directory:", config.parent)
+################################################################################################################################
+# parents
+# Returns all parent directories.
+from pathlib import Path
+
+path = Path("/opt/application/config/app.yaml")
+
+print(list(path.parents))
+# Example:
+# /opt/application/config
+# /opt/application
+# /opt
+# /
+
+#####################################################################################################################################
+# absolute()
+# Returns an absolute path.
+from pathlib import Path
+
+path = Path("app/config.yaml")
+
+print(path.absolute())
+# Example: /home/rakesh/app/config.yaml
+#######################################################################################################################################
+# resolve()
+# Resolves the path to its absolute/canonical form.
+from pathlib import Path
+
+path = Path("../app/config.yaml")
+
+print(path.resolve())
+# Example:
+from pathlib import Path
+
+config = Path("../config/app.yaml")
+
+real_path = config.resolve()
+
+print("Real path:", real_path)
+
+##########################################################################################################################################
+# relative_to()
+# Finds a path relative to another path.
+from pathlib import Path
+
+base = Path("/opt/application")
+
+file = Path("/opt/application/config/app.yaml")
+
+print(file.relative_to(base))
+# Output: config/app.yaml
+###########################################################################################################################################
+# with_name()
+# Changes the filename while keeping the same directory.
+from pathlib import Path
+
+file = Path("/etc/nginx/nginx.conf")
+
+new_file = file.with_name("nginx.conf.backup")
+
+print(new_file)
+
+# Output: /etc/nginx/nginx.conf.backup
+###########################################################################################################################################
