@@ -374,3 +374,348 @@ metadata:
 # However, for normal DevOps configuration processing, prefer:
 yaml.safe_load()
 # rather than using an unsafe loader.
+
+#######################################################################################################33
+# yaml.full_load()
+# full_load() loads YAML using FullLoader.
+
+# Example:
+import yaml
+
+with open("config.yaml") as file:
+    data = yaml.full_load(file)
+
+print(data)
+# For ordinary Kubernetes/OpenShift configuration automation, you will normally have little reason to use it instead of:yaml.safe_load()
+
+################################################################################################################
+# yaml.full_load_all()
+# Used when the YAML contains multiple documents.
+import yaml
+
+with open("resources.yaml") as file:
+    resources = yaml.full_load_all(file)
+
+for resource in resources:
+    print(resource)
+# Again, for ordinary DevOps YAML processing, safe_load_all() is usually the better default.
+
+#################################################################################################################
+# Example — Worker node configuration
+# Suppose:
+workers:
+  - name: ocp-w-1
+    ip: 192.168.22.211
+    cpu: 8
+
+  - name: ocp-w-2
+    ip: 192.168.22.212
+    cpu: 8
+
+  - name: ocp-w-3
+    ip: 192.168.22.213
+    cpu: 8
+
+# Python:
+import yaml
+
+with open("workers.yaml") as file:
+    data = yaml.safe_load(file)
+
+for worker in data["workers"]:
+    print(
+        f"Node: {worker['name']} "
+        f"IP: {worker['ip']} "
+        f"CPU: {worker['cpu']}"
+    )
+# Output:
+Node: ocp-w-1 IP: 192.168.22.211 CPU: 8
+Node: ocp-w-2 IP: 192.168.22.212 CPU: 8
+Node: ocp-w-3 IP: 192.168.22.213 CPU: 8
+
+##########################################################################################################
+# Modify an image tag
+# YAML is often used for application configuration.
+# Suppose:
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+
+# Python:
+import yaml
+
+with open("deployment.yaml") as file:
+    data = yaml.safe_load(file)
+
+data["spec"]["template"]["spec"]["containers"][0]["image"] = "nginx:1.28"
+
+with open("deployment.yaml", "w") as file:
+    yaml.safe_dump(data, file, sort_keys=False)
+
+########################################################################################################
+# Modify multiple containers
+containers:
+  - name: nginx
+    image: nginx:1.27
+
+  - name: sidecar
+    image: busybox:1.36
+
+# Python
+import yaml
+
+with open("deployment.yaml") as file:
+    data = yaml.safe_load(file)
+
+containers = data["spec"]["template"]["spec"]["containers"]
+
+for container in containers:
+    print(
+        container["name"],
+        container["image"]
+    )
+# Output:
+nginx nginx:1.27
+sidecar busybox:1.36
+
+#Find a specific container
+import yaml
+
+with open("deployment.yaml") as file:
+    data = yaml.safe_load(file)
+
+containers = data["spec"]["template"]["spec"]["containers"]
+
+for container in containers:
+
+    if container["name"] == "nginx":
+        print("Current image:", container["image"])
+
+# Update image automatically
+import yaml
+
+NEW_IMAGE = "nginx:1.28"
+
+with open("deployment.yaml") as file:
+    data = yaml.safe_load(file)
+
+containers = data["spec"]["template"]["spec"]["containers"]
+
+for container in containers:
+
+    if container["name"] == "nginx":
+        container["image"] = NEW_IMAGE
+
+with open("deployment.yaml", "w") as file:
+    yaml.safe_dump(
+        data,
+        file,
+        sort_keys=False
+    )
+
+print("Image updated successfully")
+
+# YAML validation using Python
+import yaml
+
+try:
+
+    with open("deployment.yaml") as file:
+        data = yaml.safe_load(file)
+
+    print("YAML syntax is valid")
+
+except yaml.YAMLError as error:
+
+    print("Invalid YAML")
+    print(error)
+
+# CI/CD YAML validation
+import yaml
+import sys
+
+file_name = "deployment.yaml"
+
+try:
+
+    with open(file_name) as file:
+        yaml.safe_load(file)
+
+    print(f"{file_name}: YAML is valid")
+
+except yaml.YAMLError as error:
+
+    print(f"{file_name}: YAML is invalid")
+    print(error)
+
+    sys.exit(1)
+
+# Validate Kubernetes resource kind
+# You can combine Python and YAML.
+import yaml
+import sys
+
+with open("deployment.yaml") as file:
+    data = yaml.safe_load(file)
+
+if data.get("kind") != "Deployment":
+    print("ERROR: Resource is not a Deployment")
+    sys.exit(1)
+
+print("Deployment YAML detected")
+
+# Validate required fields
+import yaml
+import sys
+
+with open("deployment.yaml") as file:
+    data = yaml.safe_load(file)
+
+required_fields = [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+]
+
+for field in required_fields:
+
+    if field not in data:
+        print(f"ERROR: Missing field: {field}")
+        sys.exit(1)
+
+print("Required fields are present")
+
+# Generate YAML and apply it
+import yaml
+import subprocess
+
+deployment = {
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+        "name": "nginx"
+    },
+    "spec": {
+        "replicas": 3
+    }
+}
+
+with open("generated.yaml", "w") as file:
+    yaml.safe_dump(
+        deployment,
+        file,
+        sort_keys=False
+    )
+
+subprocess.run(
+    ["oc", "apply", "-f", "generated.yaml"],
+    check=True
+)
+
+print("Deployment applied successfully")
+
+#############################################################################################################
+# Complete DevOps Project Example
+# Suppose you have:
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: nginx
+
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+
+# Create:update_deployment.py
+import yaml
+import sys
+
+FILE = "deployment.yaml"
+NEW_REPLICAS = 5
+NEW_IMAGE = "nginx:1.28"
+
+
+try:
+
+    # Read YAML
+    with open(FILE, "r") as file:
+        deployment = yaml.safe_load(file)
+
+except FileNotFoundError:
+
+    print(f"ERROR: File not found: {FILE}")
+    sys.exit(1)
+
+except yaml.YAMLError as error:
+
+    print("ERROR: Invalid YAML")
+    print(error)
+    sys.exit(1)
+
+
+# Validate resource
+if deployment.get("kind") != "Deployment":
+
+    print("ERROR: YAML is not a Deployment")
+    sys.exit(1)
+
+
+# Update replicas
+deployment["spec"]["replicas"] = NEW_REPLICAS
+
+
+# Update container image
+containers = deployment["spec"]["template"]["spec"]["containers"]
+
+for container in containers:
+
+    if container["name"] == "nginx":
+
+        container["image"] = NEW_IMAGE
+
+
+# Write YAML
+with open(FILE, "w") as file:
+
+    yaml.safe_dump(
+        deployment,
+        file,
+        sort_keys=False
+    )
+
+
+print("Deployment updated successfully")
+print("Replicas:", NEW_REPLICAS)
+print("Image:", NEW_IMAGE)
+
+# Run:python3 update_deployment.py
+
+# Result:
+spec:
+  replicas: 5
+
+  template:
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.28
